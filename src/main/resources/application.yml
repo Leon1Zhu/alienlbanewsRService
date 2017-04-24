@@ -14,4 +14,7 @@ spring:
 jwt:
     TTLMillis: 3600000
     audience: "测试系统"
-    base64Security: "base64"
+    base64Security: "bas
+    e64"
+server:
+    port: 8011

@@ -30,14 +30,14 @@ public class AlinewsUsers {
 
     }
 
-    public AlinewsUsers(String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {
+/*    public AlinewsUsers(String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.tel = tel;
         this.email = email;
         this.source = source;
         this.createTime=zonedDateTime;
-    }
+    }*/
 
     public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {
         this.id = id;

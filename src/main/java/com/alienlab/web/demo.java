@@ -27,7 +27,13 @@ public class demo {
 
     @RequestMapping(value="/save",method = RequestMethod.GET)
     public ResponseEntity save(@RequestParam String name,@RequestParam String password,@RequestParam String tel,@RequestParam String email,@RequestParam String resource){
-        AlinewsUsers alinewsUsers = alinewsUserServiceImpl.save(new AlinewsUsers(name,password,tel,email,resource));
+        AlinewsUsers alinewsUsers = new AlinewsUsers();
+        alinewsUsers.setUserName(name);
+        alinewsUsers.setUserPassword(password);
+        alinewsUsers.setTel(tel);
+        alinewsUsers.setEmail(email);
+        alinewsUsers.setSource(resource);
+        alinewsUsers = alinewsUserServiceImpl.save(alinewsUsers);
         return  ResponseEntity.ok().body(alinewsUsers);
     }
 

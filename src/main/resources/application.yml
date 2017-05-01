@@ -5,12 +5,7 @@ cors:
     exposed-headers:
     allow-credentials: true
     max-age: 1800
-spring:
-    datasource:
-        url: jdbc:mysql://121.41.27.6:3306/sumec_wechat
-        username: wechat
-        password: wechat123!
-        driverClassName: com.mysql.jdbc.Driver
+
 jwt:
     TTLMillis: 3600000
     audience: "测试系统"
@@ -18,3 +13,8 @@ jwt:
     e64"
 server:
     port: 8011
+spring:
+  data:
+    mongodb:
+      database: alienlabnews
+      uri: mongodb://zhuliang:zhuliang@127.0.0.1:27017/alienlabnews

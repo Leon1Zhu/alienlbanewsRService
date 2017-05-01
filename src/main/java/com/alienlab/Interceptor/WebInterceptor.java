@@ -1,12 +1,7 @@
-package com.example.Interceptor;
+package com.alienlab.Interceptor;
 
-import com.example.jwt.JwtUtils;
+import com.alienlab.jwt.JwtUtils;
 import io.jsonwebtoken.Claims;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

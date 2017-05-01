@@ -1,4 +1,4 @@
-package com.example.jwt;
+package com.alienlab.jwt;
 
 import com.alibaba.fastjson.JSONObject;
 import io.jsonwebtoken.Claims;

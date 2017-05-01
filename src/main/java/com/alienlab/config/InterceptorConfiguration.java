@@ -1,6 +1,6 @@
-package com.example.config;
+package com.alienlab.config;
 
-import com.example.Interceptor.WebInterceptor;
+import com.alienlab.Interceptor.WebInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -3,37 +3,57 @@ package com.alienlab.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.ZonedDateTime;
+
 /**
  * Created by zhuliang on 2017/4/30.
+ * 系统用户表
  */
 @Document
 public class AlinewsUsers {
     @Id
     private String id;
+    //用户名
     private String userName;
+    //密码
     private String userPassword;
+    //电话
     private String tel;
+    //email
     private String email;
+    //用户来源
     private String source;
+    //创建时间
+    private ZonedDateTime  createTime;
 
     public AlinewsUsers() {
     }
 
-    public AlinewsUsers(String userName, String userPassword, String tel, String email, String source) {
+    public AlinewsUsers(String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.tel = tel;
         this.email = email;
         this.source = source;
+        this.createTime=zonedDateTime;
     }
 
-    public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source) {
+    public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {
         this.id = id;
         this.userName = userName;
         this.userPassword = userPassword;
         this.tel = tel;
         this.email = email;
         this.source = source;
+        this.createTime=zonedDateTime;
+    }
+
+    public ZonedDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(ZonedDateTime createTime) {
+        this.createTime = createTime;
     }
 
     public String getId() {

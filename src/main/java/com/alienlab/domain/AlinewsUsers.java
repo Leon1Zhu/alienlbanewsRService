@@ -27,6 +27,7 @@ public class AlinewsUsers {
     private ZonedDateTime  createTime;
 
     public AlinewsUsers() {
+
     }
 
     public AlinewsUsers(String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {

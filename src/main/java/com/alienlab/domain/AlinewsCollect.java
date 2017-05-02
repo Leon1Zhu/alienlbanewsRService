@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 /**
  * Created by zhuliang on 2017/5/1.
@@ -18,12 +19,12 @@ public class AlinewsCollect {
     //收藏的用户id
     private String userId;
     //收藏时间
-    private ZonedDateTime collectTime;
+    private Date collectTime;
 
     public AlinewsCollect() {
     }
 
-    public AlinewsCollect(String id, String paperId, String userId, ZonedDateTime collectTime) {
+    public AlinewsCollect(String id, String paperId, String userId, Date collectTime) {
         this.id = id;
         this.paperId = paperId;
         this.userId = userId;
@@ -54,11 +55,11 @@ public class AlinewsCollect {
         this.userId = userId;
     }
 
-    public ZonedDateTime getCollectTime() {
+    public Date getCollectTime() {
         return collectTime;
     }
 
-    public void setCollectTime(ZonedDateTime collectTime) {
+    public void setCollectTime(Date collectTime) {
         this.collectTime = collectTime;
     }
 }

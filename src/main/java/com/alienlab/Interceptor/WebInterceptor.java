@@ -37,7 +37,7 @@ public class WebInterceptor extends HandlerInterceptorAdapter {
         // 验证用户是否登陆
         Claims claims = JwtUtils.parseJWT(jwtToken, "base64");
         if("测试系统".equals(claims.getAudience())){
-            if (new Date().getTime() < claims.getExpiration().getTime()) {
+            if (new Date().getTime() > claims.getExpiration().getTime()) {
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 response = setResponse(data,response);
                 return false;

@@ -3,6 +3,7 @@ package com.alienlab.domain;
 import org.springframework.data.annotation.Id;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,18 +18,20 @@ public class AlinewsPaper {
     //报纸地址
     private  String paperUrl;
     //报纸类别
-    private AlinewsPaperType paperType;
+    private String paperType;
     //报纸状态
     private String paperStatus;
+    //报纸封面
+    private String picUrl;
     //报纸收藏人数
     private int collectCount;
     //创建时间
-    private ZonedDateTime createTime;
+    private Date createTime;
 
     public AlinewsPaper() {
     }
 
-    public AlinewsPaper(String id, String paperName, String paperUrl, AlinewsPaperType paperType, String paperStatus, int collectCount, ZonedDateTime createTime) {
+    public AlinewsPaper(String id, String paperName, String paperUrl, String paperType, String paperStatus, int collectCount, Date createTime) {
         this.id = id;
         this.paperName = paperName;
         this.paperUrl = paperUrl;
@@ -62,11 +65,11 @@ public class AlinewsPaper {
         this.paperUrl = paperUrl;
     }
 
-    public AlinewsPaperType getPaperType() {
+    public String getPaperType() {
         return paperType;
     }
 
-    public void setPaperType(AlinewsPaperType paperType) {
+    public void setPaperType(String paperType) {
         this.paperType = paperType;
     }
 
@@ -86,11 +89,11 @@ public class AlinewsPaper {
         this.collectCount = collectCount;
     }
 
-    public ZonedDateTime getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(ZonedDateTime createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 }

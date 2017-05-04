@@ -39,7 +39,7 @@ public class AlinewsUserServiceImpl implements AlinewsUserService {
     }
 
     @Override
-    public AlinewsUsers regist(String username, String password, String tel, String email, String imgurl, String resource) throws Exception {
+    public AlinewsUsers regist(String username, String password, String tel, String email, String imgurl, String resource,String nickname) throws Exception {
         AlinewsUsers alinewsUsers;
         if(resource.equals("0")){
             alinewsUsers = alinewsUserRepository.findUserByUserNameAndSource(username,"0");
@@ -54,6 +54,7 @@ public class AlinewsUserServiceImpl implements AlinewsUserService {
             alinewsUsers.setSource(resource);
             alinewsUsers.setImgUrl(imgurl);
             alinewsUsers.setUserPassword(password);
+            alinewsUsers.setNickName(nickname);
         return alinewsUserRepository.save(alinewsUsers);
         }else{
             alinewsUsers = alinewsUserRepository.findUserByUserNameAndSource(username,resource);
@@ -67,6 +68,7 @@ public class AlinewsUserServiceImpl implements AlinewsUserService {
             alinewsUsers.setSource(resource);
             alinewsUsers.setImgUrl(imgurl);
             alinewsUsers.setUserPassword(password);
+            alinewsUsers.setNickName(nickname);
             return alinewsUserRepository.save(alinewsUsers);
         }
     }

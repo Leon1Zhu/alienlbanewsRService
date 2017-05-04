@@ -14,5 +14,5 @@ public interface AlinewsUserService {
 
     AlinewsUsers login(String username,String password)throws Exception;
 
-    AlinewsUsers regist(String username,String password,String tel,String email,String imgurl,String resource)throws  Exception;
+    AlinewsUsers regist(String username,String password,String tel,String email,String imgurl,String resource,String nickname)throws  Exception;
 }

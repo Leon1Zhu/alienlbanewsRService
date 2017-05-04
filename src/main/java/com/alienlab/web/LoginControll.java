@@ -50,10 +50,11 @@ public class LoginControll {
             @ApiImplicitParam(name = "email", value = "邮箱",  dataType = "String"),
             @ApiImplicitParam(name = "imgurl", value = "头像",  dataType = "String"),
             @ApiImplicitParam(name = "resource", value = "来源",  dataType = "String"),
+            @ApiImplicitParam(name = "nickname", value = "昵称",  dataType = "String"),
     })
-    public ResponseEntity userRegist(@RequestParam String loginname, @RequestParam String password, @RequestParam String tel,@RequestParam String email ,@RequestParam String imgurl,@RequestParam String resource){
+    public ResponseEntity userRegist(@RequestParam String loginname, @RequestParam String password, @RequestParam String tel,@RequestParam String email ,@RequestParam String imgurl,@RequestParam String resource,@RequestParam String nickname){
         try {
-            AlinewsUsers alinewsUsers = alinewsUserService.regist(loginname, password, tel, email, imgurl, resource);
+            AlinewsUsers alinewsUsers = alinewsUserService.regist(loginname, password, tel, email, imgurl, resource,nickname);
             return ResponseEntity.ok().body(alinewsUsers);
         }catch (Exception e){
             e.printStackTrace();

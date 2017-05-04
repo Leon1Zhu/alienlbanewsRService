@@ -26,6 +26,8 @@ public class AlinewsUsers {
     private String source;
     //头像跟
     private String imgUrl;
+    //昵称
+    private String nickName;
     //创建时间
     private Date createTime;
 
@@ -42,7 +44,7 @@ public class AlinewsUsers {
         this.createTime=zonedDateTime;
     }*/
 
-    public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source,Date zonedDateTime,String imgUrl) {
+    public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source,Date zonedDateTime,String imgUrl,String nickname) {
         this.id = id;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -51,6 +53,15 @@ public class AlinewsUsers {
         this.source = source;
         this.createTime=zonedDateTime;
         this.imgUrl = imgUrl;
+        this.nickName = nickname;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getImgUrl() {

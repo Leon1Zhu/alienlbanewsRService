@@ -31,7 +31,7 @@ public class AlinewsPaper {
     public AlinewsPaper() {
     }
 
-    public AlinewsPaper(String id, String paperName, String paperUrl, String paperType, String paperStatus, int collectCount, Date createTime) {
+    public AlinewsPaper(String id, String paperName, String paperUrl, String paperType, String paperStatus, int collectCount, Date createTime,String picUrl) {
         this.id = id;
         this.paperName = paperName;
         this.paperUrl = paperUrl;
@@ -39,6 +39,15 @@ public class AlinewsPaper {
         this.paperStatus = paperStatus;
         this.collectCount = collectCount;
         this.createTime = createTime;
+        this.picUrl = picUrl;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
     }
 
     public String getPaperName() {

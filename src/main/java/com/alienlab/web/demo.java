@@ -1,8 +1,10 @@
 package com.alienlab.web;
 
 import com.alienlab.domain.AlinewsPaper;
+import com.alienlab.domain.AlinewsPaperInfo;
 import com.alienlab.domain.AlinewsPaperType;
 import com.alienlab.domain.AlinewsUsers;
+import com.alienlab.repository.AlinewsPaperInfoRepository;
 import com.alienlab.repository.AlinewsPaperRepository;
 import com.alienlab.repository.AlinewsPaperTypeRepository;
 import com.alienlab.service.serviceImpl.AlinewsUserServiceImpl;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +35,8 @@ public class demo {
     private AlinewsPaperTypeRepository alinewsPaperTypeRepository;
     @Autowired
     private AlinewsPaperRepository alinewsPaperRepository;
+    @Autowired
+    private AlinewsPaperInfoRepository alinewsPaperInfoRepository;
     @RequestMapping(value="/test",method = RequestMethod.GET)
     public ResponseEntity test(){
         List<AlinewsUsers> alinewsUserss = alinewsUserServiceImpl.findALLUser();
@@ -94,6 +99,21 @@ public class demo {
 
         return  ResponseEntity.ok().body("完成");
     }
+
+    @ApiOperation(value="新增市场星报信息",notes="测试用。")
+    @RequestMapping(value="/savescxbtype",method = RequestMethod.GET)
+    public ResponseEntity savescxbtype(){
+        AlinewsPaper alinewsPaper = alinewsPaperRepository.findPaperBypaperName("市场星报");
+        AlinewsPaperInfo alinewsPaperInfo = new AlinewsPaperInfo();
+        alinewsPaperInfo.setCreateTime(new Date());
+        alinewsPaperInfo.setHtmlUrl(alinewsPaper.getPaperUrl());
+        alinewsPaperInfo.setPaperId(alinewsPaper.getId());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        alinewsPaperInfo.setUpdateTime("2017-05-04");
+       alinewsPaperInfoRepository.save(alinewsPaperInfo);
+        return  ResponseEntity.ok().body("完成");
+    }
+
 
     @RequestMapping(value="/save",method = RequestMethod.GET)
     public ResponseEntity save(@RequestParam String name,@RequestParam String password,@RequestParam String tel,@RequestParam String email,@RequestParam String resource){

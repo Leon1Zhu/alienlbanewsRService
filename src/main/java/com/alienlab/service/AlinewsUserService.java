@@ -11,4 +11,8 @@ import java.util.List;
 public interface AlinewsUserService {
     List<AlinewsUsers> findALLUser();
     AlinewsUsers save(AlinewsUsers alinewsUsers);
+
+    AlinewsUsers login(String username,String password)throws Exception;
+
+    AlinewsUsers regist(String username,String password,String tel,String email,String imgurl,String resource)throws  Exception;
 }

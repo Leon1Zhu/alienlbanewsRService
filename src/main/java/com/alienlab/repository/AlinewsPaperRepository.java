@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface AlinewsPaperRepository extends MongoRepository<AlinewsPaper,String>{
     List<AlinewsPaper> findPaperByPaperType(String paperType);
+    AlinewsPaper findPaperBypaperName(String paperName);
 }

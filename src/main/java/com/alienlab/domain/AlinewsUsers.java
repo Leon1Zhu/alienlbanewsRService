@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 /**
  * Created by zhuliang on 2017/4/30.
@@ -21,10 +22,12 @@ public class AlinewsUsers {
     private String tel;
     //email
     private String email;
-    //用户来源
+    //用户来源0系统 1QQ 2微信
     private String source;
+    //头像跟
+    private String imgUrl;
     //创建时间
-    private ZonedDateTime  createTime;
+    private Date createTime;
 
     public AlinewsUsers() {
 
@@ -39,7 +42,7 @@ public class AlinewsUsers {
         this.createTime=zonedDateTime;
     }*/
 
-    public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source,ZonedDateTime zonedDateTime) {
+    public AlinewsUsers(String id, String userName, String userPassword, String tel, String email, String source,Date zonedDateTime,String imgUrl) {
         this.id = id;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -47,13 +50,22 @@ public class AlinewsUsers {
         this.email = email;
         this.source = source;
         this.createTime=zonedDateTime;
+        this.imgUrl = imgUrl;
     }
 
-    public ZonedDateTime getCreateTime() {
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(ZonedDateTime createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

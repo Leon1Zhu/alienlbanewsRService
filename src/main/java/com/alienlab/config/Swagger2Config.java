@@ -34,7 +34,7 @@ public class Swagger2Config {
                 .title("Spring Boot中使用Swagger2构建RESTful APIs")
                 .description("spring Boot 中构建RESTful API")
                 .termsOfServiceUrl("")
-                .contact("huguoju")
+                .contact("caizi")
                 .version("1.0")
                 .build();
     }

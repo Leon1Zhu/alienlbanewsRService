@@ -17,7 +17,7 @@ public class AlinewsPaperInfo {
     //报刊id；
     private String paperId;
     //更新时间（精确到天）
-    private ZonedDateTime updateTime;
+    private String updateTime;
     //版面地址
     private String htmlUrl;
     //创建时间
@@ -26,7 +26,7 @@ public class AlinewsPaperInfo {
     public AlinewsPaperInfo() {
     }
 
-    public AlinewsPaperInfo(String id, String paperId, ZonedDateTime updateTime, String htmlUrl, Date createTime) {
+    public AlinewsPaperInfo(String id, String paperId, String updateTime, String htmlUrl, Date createTime) {
         this.id = id;
         this.paperId = paperId;
         this.updateTime = updateTime;
@@ -50,11 +50,11 @@ public class AlinewsPaperInfo {
         this.paperId = paperId;
     }
 
-    public ZonedDateTime getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(ZonedDateTime updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

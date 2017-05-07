@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AlinewsUserRepository extends MongoRepository<AlinewsUsers,String>{
+    AlinewsUsers findUserByUserNameAndUserPasswordAndSource(String userName,String userPassword,String source);
+    AlinewsUsers findUserByUserNameAndSource(String userName,String source);
 }

@@ -5,16 +5,14 @@ import com.alienlab.domain.AlinewsPaperType;
 import com.alienlab.service.AlinewsPaperService;
 import com.alienlab.service.AlinewsPaperTypeService;
 import com.alienlab.util.ExecResult;
+import com.alienlab.util.HttpRequest;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +34,33 @@ public class AlinewsPaperController {
            List<AlinewsPaperType> alinewsPaperTypes = alinewsPaperTypeService.getAllType();
             JSONArray ja = alinewsPaperService.findAllTypeAndPaperByList(alinewsPaperTypes);
             return ResponseEntity.ok().body(ja);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ExecResult er=new ExecResult(false,e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(er);
+        }
+    }
+
+ /*   @GetMapping("/alinews-paper/recommend")
+    @ApiOperation(value="获取报纸推荐列表",notes="获取报纸推荐列表")
+    public ResponseEntity getAllPaperRecommend(){
+        try {
+            List<AlinewsPaperType> alinewsPaperTypes = alinewsPaperTypeService.findAllRecommend();
+            JSONArray ja = alinewsPaperService.findAllTypeAndPaperByList(alinewsPaperTypes);
+            return ResponseEntity.ok().body(ja);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ExecResult er=new ExecResult(false,e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(er);
+        }
+    }*/
+
+    @GetMapping("/alinews-paper/news")
+    @ApiOperation(value="获取今日头条",notes="获取今日头条")
+    public ResponseEntity getAllPaperNews(@RequestParam String type){
+        try {
+            String result =  HttpRequest.sendGet("http://v.juhe.cn/toutiao/index","type="+type+"&key=bcfb13764084bc734f2bc6b23e339633");
+            return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             e.printStackTrace();
             ExecResult er=new ExecResult(false,e.getMessage());

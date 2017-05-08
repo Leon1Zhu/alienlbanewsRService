@@ -2,10 +2,12 @@ package com.alienlab.service.serviceImpl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alienlab.domain.AlinewsCollect;
 import com.alienlab.domain.AlinewsPaper;
 import com.alienlab.domain.AlinewsPaperInfo;
 import com.alienlab.domain.AlinewsPaperType;
 import com.alienlab.repository.AlinewsPaperRepository;
+import com.alienlab.service.AlinewsCollectService;
 import com.alienlab.service.AlinewsPaperService;
 import com.mongodb.DBObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,15 @@ public class AlinewsPaperServiceImpl implements AlinewsPaperService{
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private AlinewsCollectService alinewsCollectService;
     @Override
-    public JSONArray findAllTypeAndPaperByList(List<AlinewsPaperType> tyepList) throws Exception {
+    public JSONArray findAllTypeAndPaperByList(List<AlinewsPaperType> tyepList,Boolean loginflag,String userid) throws Exception {
         JSONArray result = new JSONArray();
+        List<AlinewsCollect> alinewsCollects = new ArrayList<AlinewsCollect>();
+        if(loginflag) alinewsCollects =  alinewsCollectService.getAllCollectByUserId(userid);
+        else  alinewsCollects=new ArrayList<>();
         int i = 0, len = tyepList.size();
         for (; i < len; i++) {
             List<AlinewsPaper> alinewsPapers = alinewsPaperRepository.findPaperByPaperType(tyepList.get(i).getTypeName());
@@ -44,6 +52,11 @@ public class AlinewsPaperServiceImpl implements AlinewsPaperService{
             for (int T = 0; T < alinewsPapers.size(); T++) {
                 paper = new JSONObject();
                 paper= getPaperInfo(alinewsPapers.get(T));
+                for(AlinewsCollect alinewsCollect :alinewsCollects){
+                    if(alinewsCollect.getPaperId().equals(paper.getString("id"))){
+                        paper.put("isCollect", true);
+                    }
+                }
                 papers.add(paper);
 
             }

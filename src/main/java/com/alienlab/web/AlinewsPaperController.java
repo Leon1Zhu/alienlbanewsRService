@@ -29,10 +29,14 @@ public class AlinewsPaperController {
 
     @GetMapping("/alinews-paper")
     @ApiOperation(value="获取所有报纸种类以及类别下面的报纸信息",notes="获取所有报纸种类以及类别下面的报纸信息。")
-    public ResponseEntity getAllPaperTypeAndInfo(){
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "loginflag", value = "是否登陆的flag",  dataType = "Boolean"),
+            @ApiImplicitParam(name = "userid", value = "用户id",  dataType = "String"),
+    })
+    public ResponseEntity getAllPaperTypeAndInfo(@RequestParam boolean loginflag,@RequestParam String userid){
         try {
            List<AlinewsPaperType> alinewsPaperTypes = alinewsPaperTypeService.getAllType();
-            JSONArray ja = alinewsPaperService.findAllTypeAndPaperByList(alinewsPaperTypes);
+            JSONArray ja = alinewsPaperService.findAllTypeAndPaperByList(alinewsPaperTypes,loginflag,userid);
             return ResponseEntity.ok().body(ja);
         } catch (Exception e) {
             e.printStackTrace();

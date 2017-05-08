@@ -1,6 +1,8 @@
 package com.alienlab.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alienlab.domain.AlinewsCollect;
+import com.alienlab.domain.AlinewsPaper;
 
 import java.util.List;
 
@@ -10,5 +12,6 @@ import java.util.List;
 public interface AlinewsCollectService {
     List<AlinewsCollect> getAllCollectByUserId(String userid) throws Exception;
     AlinewsCollect addCollect(String userId, String paperId)throws Exception;
-    void deleteCollect(String userid,String collectId)throws Exception;
+    AlinewsPaper deleteCollect(String userid, String paperId)throws Exception;
+    JSONArray getAllCollectPaperByUserId(String userid) throws Exception;
 }

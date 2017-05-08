@@ -10,7 +10,7 @@ import java.util.List;
  * Created by zhuliang on 2017/5/1.
  */
 public interface AlinewsPaperService {
-    JSONArray findAllTypeAndPaperByList(List<AlinewsPaperType> tyepList) throws Exception;
+    JSONArray findAllTypeAndPaperByList(List<AlinewsPaperType> tyepList,Boolean loginflag,String userid) throws Exception;
     //获取热门推荐
     JSONArray findAllRecommend()throws Exception;
 }

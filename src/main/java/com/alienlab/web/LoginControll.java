@@ -2,18 +2,15 @@ package com.alienlab.web;
 
 import com.alienlab.domain.AlinewsUsers;
 import com.alienlab.service.AlinewsUserService;
+import com.alienlab.service.serviceImpl.TestService;
 import com.alienlab.util.ExecResult;
-import com.sun.tools.corba.se.idl.StringGen;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by zhuliang on 2017/5/4.
@@ -23,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginControll {
     @Autowired
     private AlinewsUserService alinewsUserService;
+
+    @Autowired
+    private TestService testService;
 
     @PostMapping("/user-login")
     @ApiOperation(value="登陆",notes="登陆。")
@@ -62,4 +62,12 @@ public class LoginControll {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(er);
         }
     }
+
+
+ /*   @GetMapping("/testApi")
+    public void testApi(){
+        for(int i=0;i<5;i++){
+            testService.run(i);
+        }
+    }*/
 }

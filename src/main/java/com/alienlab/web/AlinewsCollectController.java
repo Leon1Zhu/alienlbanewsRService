@@ -1,6 +1,8 @@
 package com.alienlab.web;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alienlab.domain.AlinewsCollect;
+import com.alienlab.domain.AlinewsPaper;
 import com.alienlab.service.AlinewsCollectService;
 import com.alienlab.util.ExecResult;
 import io.swagger.annotations.ApiImplicitParam;
@@ -18,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
-public class AlinewsPaperCollectController {
+public class AlinewsCollectController {
     @Autowired
     private AlinewsCollectService alinewsCollectService;
     @GetMapping("/alinews-collects")
@@ -56,16 +58,35 @@ public class AlinewsPaperCollectController {
     @ApiOperation(value="取消收藏报纸",notes="取消收藏报纸。")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userid", value = "用户openid",  dataType = "String"),
-            @ApiImplicitParam(name = "collectId", value = "收藏id",  dataType = "String"),
+            @ApiImplicitParam(name = "paperId", value = "报纸id",  dataType = "String"),
     })
-    public ResponseEntity deleteCollects(@RequestParam String userid,@RequestParam String collectId){
+    public ResponseEntity deleteCollects(@RequestParam String userid,@RequestParam String paperId){
         try {
-            alinewsCollectService.deleteCollect(userid,collectId);
-            return ResponseEntity.ok().body("删除成功");
+            AlinewsPaper alinewsPaper = alinewsCollectService.deleteCollect(userid,paperId);
+            return ResponseEntity.ok().body(alinewsPaper);
         }catch (Exception e){
             e.printStackTrace();
             ExecResult er=new ExecResult(false,e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(er);
         }
     }
+
+    @GetMapping("/alinews-collects/show")
+    @ApiOperation(value="根据用户id获取当前用户下所有需要展示的报纸",notes="根据用户id获取当前用户下所有需要展示的报纸")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name="userid",value="用户id",dataType="String")
+    })
+    public ResponseEntity getUserCollectPaper(@RequestParam String userid){
+      try {
+          JSONArray ja = alinewsCollectService.getAllCollectPaperByUserId(userid);
+        return ResponseEntity.ok().body(ja);
+      }catch (Exception e){
+        e.printStackTrace();
+        ExecResult er=new ExecResult(false,e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(er);
+      }
+    }
+
+
+
 }

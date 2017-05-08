@@ -46,7 +46,7 @@ public class demo {
     @ApiOperation(value="新增报纸类型接口",notes="测试用。")
     @RequestMapping(value="/savetype",method = RequestMethod.GET)
     public ResponseEntity savetype(){
-        List<String> list = new ArrayList();
+       /* List<String> list = new ArrayList();
         list.add("商业新闻报");
         list.add("晚报");
         list.add("都市报");
@@ -58,7 +58,7 @@ public class demo {
             alinewsPaperType.setStauts("1");
             System.out.println(ZonedDateTime.now());
             alinewsPaperType = alinewsPaperTypeRepository.save(alinewsPaperType);
-        }
+        }*/
 
         return  ResponseEntity.ok().body("完成");
     }
@@ -66,7 +66,89 @@ public class demo {
     @ApiOperation(value="新增报纸接口",notes="测试用。")
     @RequestMapping(value="/savepaper",method = RequestMethod.GET)
     public ResponseEntity savepaper(){
-        List<String> list = new ArrayList();
+
+       /* List<String> list = new ArrayList();
+
+        List<String> list2 = new ArrayList();
+
+        for (int i = 0;i>list.size();i++) {
+            AlinewsPaper alinewsPaper = new AlinewsPaper();
+            alinewsPaper.setCreateTime(new Date());
+            alinewsPaper.setCollectCount(0);
+            alinewsPaper.setPaperName(list.get(i));
+            alinewsPaper.setPaperStatus("1");
+            alinewsPaper.setPaperType("商业新闻报");
+            alinewsPaper.setPaperUrl(list2.get(i));
+            System.out.println(ZonedDateTime.now());
+            alinewsPaper = alinewsPaperRepository.save(alinewsPaper);
+            System.out.println(alinewsPaper);
+        }
+
+      list = new ArrayList();
+        list.add("市场星报");
+        list.add("重庆商报");
+        list.add("成都商报");
+        list.add("温州商报");
+        list.add("东南商报");
+        list.add("深圳商报");
+        list.add("香港文汇报");
+
+        list2 = new ArrayList();
+        list2.add("http://www.ahscb.com/html/$$/node_2.htm");
+        list2.add("http://e.chinacqsb.com/html/$$/node_2.htm");
+        list2.add("http://e.chengdu.cn/html/$$/node_2.htm");
+        list2.add("http://wzed.66wz.com/html/$$/node_123.htm");
+        list2.add("http://daily.cnnb.com.cn/dnsb/html/$$/node_156.htm");
+        list2.add("http://szsb.sznews.com/html/$$/node_1388.htm");
+        list2.add("http://pdf.wenweipo.com/index.html");
+        for (int i = 0;i<list.size();i++) {
+            AlinewsPaper alinewsPaper = new AlinewsPaper();
+            alinewsPaper.setCreateTime(new Date());
+            alinewsPaper.setCollectCount(0);
+            alinewsPaper.setPaperName(list.get(i));
+            alinewsPaper.setPaperStatus("1");
+            alinewsPaper.setPaperType("商业新闻报");
+            alinewsPaper.setPaperUrl(list2.get(i));
+            System.out.println(ZonedDateTime.now());
+            alinewsPaper = alinewsPaperRepository.save(alinewsPaper);
+        }*/
+
+         /* list = new ArrayList();
+        list.add("温州都市报");
+        list.add("深圳都市报");
+        list.add("汕头都市报");
+        list.add("南国都市报");
+        *//*list.add("扬州晚报");
+        list.add("温州晚报");
+        list.add("南湖晚报");
+        list.add("法制晚报");
+        list.add("成都晚报");
+        list.add("苍梧晚报")*//*;
+
+        list2 = new ArrayList();
+        list2.add("http://dsb.66wz.com/html/$$/node_203.htm");
+        list2.add("http://dtzbd.sznews.com/html/$$/node_3442.htm");
+        list2.add("http://dsb.dahuawang.com/html/$$/node_2.htm");
+        list2.add("http://ngdsb.hinews.cn/html/$$/node_1.htm");
+    *//*    list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");*//*
+        for (int i = 0;i<list.size();i++) {
+            AlinewsPaper alinewsPaper = new AlinewsPaper();
+            alinewsPaper.setCreateTime(new Date());
+            alinewsPaper.setCollectCount(0);
+            alinewsPaper.setPaperName(list.get(i));
+            alinewsPaper.setPaperStatus("1");
+            alinewsPaper.setPaperType("都市报");
+            alinewsPaper.setPaperUrl(list2.get(i));
+            System.out.println(ZonedDateTime.now());
+            alinewsPaper = alinewsPaperRepository.save(alinewsPaper);
+        }
+
+        list = new ArrayList();
         list.add("武汉晨报");
         list.add("宁波日报");
         list.add("重庆日报");
@@ -76,7 +158,7 @@ public class demo {
         list.add("现代快报");
         list.add("新华日报");
 
-        List<String> list2 = new ArrayList();
+        list2 = new ArrayList();
         list2.add("http://whcb.cjn.cn/html/$$/node_42.htm");
         list2.add("http://daily.cnnb.com.cn/nbrb/html/$$/node_2.htm");
         list2.add("http://cqrbepaper.cqnews.net/cqrb/html/$$/node_124.htm");
@@ -96,6 +178,41 @@ public class demo {
             System.out.println(ZonedDateTime.now());
             alinewsPaper = alinewsPaperRepository.save(alinewsPaper);
         }
+
+        list = new ArrayList();
+        list.add("解放军报");
+        list.add("解放日报");
+        list.add("中国青年报");
+        list.add("中国教师报");
+        list.add("北京青年报");
+        *//*list.add("温州晚报");
+        list.add("南湖晚报");
+        list.add("法制晚报");
+        list.add("成都晚报");
+        list.add("苍梧晚报")*//*;
+
+        list2 = new ArrayList();
+        list2.add("http://www.81.cn/jfjbmap/content/$$/node_2.htm");
+        list2.add("http://newspaper.jfdaily.com/jfrb/html/$$/node_2.htm");
+        list2.add("http://zqb.cyol.com/html/$$/nbs.D110000zgqnb_01.htm");
+        list2.add("http://paper.chinateacher.com.cn/zgjsb/html/$$/node_22.htm");
+        list2.add("http://epaper.ynet.com/html/$$/node_1331.htm");
+       *//* list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");
+        list2.add("http://zzwb.zynews.com/html/$$/node_102.htm");*//*
+        for (int i = 0;i<list.size();i++) {
+            AlinewsPaper alinewsPaper = new AlinewsPaper();
+            alinewsPaper.setCreateTime(new Date());
+            alinewsPaper.setCollectCount(0);
+            alinewsPaper.setPaperName(list.get(i));
+            alinewsPaper.setPaperStatus("1");
+            alinewsPaper.setPaperType("对象报");
+            alinewsPaper.setPaperUrl(list2.get(i));
+            System.out.println(ZonedDateTime.now());
+            alinewsPaper = alinewsPaperRepository.save(alinewsPaper);
+        }*/
 
         return  ResponseEntity.ok().body("完成");
     }

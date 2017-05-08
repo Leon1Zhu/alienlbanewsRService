@@ -5,6 +5,8 @@ import com.alienlab.domain.AlinewsUsers;
 import com.alienlab.repository.AlinewsUserRepository;
 import com.alienlab.service.AlinewsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

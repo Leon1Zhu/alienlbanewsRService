@@ -33,17 +33,6 @@ public class JsoupAsyncMethod {
                 System.err.println("网址格式错误！");
             }
         }
-        while (true) {
-            if (jsonArray_all.get(len - 1) != null) {
-                // 三个任务都调用完成，退出循环等待
-                break;
-            }
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
         return jsonArray_all;
     }
 }

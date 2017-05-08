@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import static com.alienlab.jsoup.PdfDataGrab.jsonArrayAllData;
+
 
 /**
  * 包括
@@ -65,6 +67,7 @@ public class NewsJsoup {
         for (int i = 0; i < listlen; i++) {
             httpDownload.download(list.get(i), "" + getpath + "\\" + today + "\\" + today + "-" + name + "-" + i + ".pdf");
         }
+        jsonArrayAllData.add(jsonArray);
         return jsonArray;
     }
 

@@ -84,6 +84,7 @@ public class AlinewsPaperServiceImpl implements AlinewsPaperService{
             papers.add(paper);
 
         }
+        System.out.println(papers);
         return papers;
     }
 

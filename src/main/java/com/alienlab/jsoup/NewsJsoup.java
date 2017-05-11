@@ -20,6 +20,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import static com.alienlab.jsoup.PdfDataGrab.jsonArrayAllData;
+import static com.alienlab.util.Pdf2htmlEXUtil.pdf2html;
 
 
 /**
@@ -64,10 +65,23 @@ public class NewsJsoup {
         }
         jsonArray = (JSONArray) JSON.toJSON(list);
         int listlen = list.size();
+        JSONArray allPath = new JSONArray();
         for (int i = 0; i < listlen; i++) {
-            httpDownload.download(list.get(i), "" + getpath + "\\" + today + "\\" + today + "-" + name + "-" + i + ".pdf");
+            String path = "" + getpath + "\\" + today + "\\" + today + "-" + name + "-" + i + ".pdf";
+            allPath.add(path);
+            httpDownload.download(list.get(i), path);
         }
         jsonArrayAllData.add(jsonArray);
+        if(allPath.size()>0){
+            for (int i=0;i<allPath.size();i++) {
+                String pdfInfo = allPath.get(i).toString();
+                String pdfHtml = pdfInfo.replace("pdf", "html");
+                String pdfs[] = pdfHtml.split("/");
+                String filename[] = pdfs[1].split("\\.");
+                System.out.println("报纸urlTTT");
+                pdf2html("E:\\pdf2HtmlEx\\pdf2htmlEX.exe --embed-css 0  --embed-javascript 0 --embed-image 0  --clean-tmp 1   --fit-width 1330 " + pdfInfo + "  --dest-dir " + pdfs[0] + "\\" + filename[0] + "  " + pdfs[1] + "", "v.pdf", "v2.html");
+            }
+        }
         return jsonArray;
     }
 

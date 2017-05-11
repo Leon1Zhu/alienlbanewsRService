@@ -4,20 +4,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @EnableAsync
-public class DemoApplication {
+@EnableScheduling
+public class DemoApplication{
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+
+		ConfigurableApplicationContext context =  SpringApplication.run(DemoApplication.class, args);
+		/*context.registerShutdownHook()*/;
+		/*context.start();*/
 	}
-	/*	@Bean
-	public TomcatEmbeddedServletContainerFactory servletContainer(){
-		TomcatEmbeddedServletContainerFactory container = new TomcatEmbeddedServletContainerFactory();
-		container.setPort(8081);
-//      container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND,""));
-		return container;
-	}*/
+
+
 }

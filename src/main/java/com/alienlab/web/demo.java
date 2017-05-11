@@ -46,6 +46,8 @@ public class demo {
     @ApiOperation(value="新增报纸类型接口",notes="测试用。")
     @RequestMapping(value="/savetype",method = RequestMethod.GET)
     public ResponseEntity savetype(){
+        Long t = 1L;
+        String s = t.toString();
        /* List<String> list = new ArrayList();
         list.add("商业新闻报");
         list.add("晚报");

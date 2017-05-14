@@ -69,23 +69,9 @@ public class AlinewsPaperServiceImpl implements AlinewsPaperService{
         }
 
     @Override
-    public JSONArray findAllRecommend() throws Exception {
-        Aggregation aggregation = Aggregation.newAggregation(
-                Aggregation.sort(Sort.Direction.DESC,"collectCount"),
-                Aggregation.limit(6)
-        );
-        AggregationResults<AlinewsPaper> aggRes = mongoTemplate.aggregate(aggregation,"alinewsPaper",AlinewsPaper.class);
-        List<AlinewsPaper> alinewsPapers = aggRes.getMappedResults();
-        JSONArray papers = new JSONArray();
-        JSONObject paper;
-        for (int T = 0; T < alinewsPapers.size(); T++) {
-            paper = new JSONObject();
-            paper= getPaperInfo(alinewsPapers.get(T));
-            papers.add(paper);
-
-        }
-        System.out.println(papers);
-        return papers;
+    public List<AlinewsPaper> findAllRecommend() throws Exception {
+        List<AlinewsPaper> alinewsPapers = alinewsPaperRepository.findAll();
+        return alinewsPapers;
     }
 
     //获取一份报纸的相关数据

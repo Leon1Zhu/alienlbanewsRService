@@ -10,12 +10,14 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import com.alibaba.fastjson.JSON;
+import com.alienlab.service.AlinewsPaperInfoService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,16 @@ import static com.alienlab.util.Pdf2htmlEXUtil.pdf2html;
 public class NewsJsoup {
     @Autowired
     HttpDownload httpDownload;
+
+    @Value("${pdf2ToHtmlUri}")
+    private String Pdf2ToHtmlUri;
+
+    @Value("${saveurl}")
+    private String saveurl;
+
+
+    @Autowired
+    private AlinewsPaperInfoService alinewsPaperInfoService;
 
     /**
      * 根据url地址,标签选择得到本网站所有的pdf文件
@@ -66,10 +78,18 @@ public class NewsJsoup {
         jsonArray = (JSONArray) JSON.toJSON(list);
         int listlen = list.size();
         JSONArray allPath = new JSONArray();
+        JSONArray jsonArrayhtml=new JSONArray();
         for (int i = 0; i < listlen; i++) {
             String path = "" + getpath + "\\" + today + "\\" + today + "-" + name + "-" + i + ".pdf";
             allPath.add(path);
-            httpDownload.download(list.get(i), path);
+            jsonArrayhtml.add(""+saveurl+""+today+"/"+today+"-"+name+"-"+i+"/"+today+"-"+name+"-"+i+".html");
+            httpDownload.download(list.get(i), ""+getpath+"\\"+today+"\\"+today+"-"+name+"-"+i+".pdf");
+        }
+        try {
+            alinewsPaperInfoService.saveDoweloadPaper(name,jsonArrayhtml);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("保存报刊出错");
         }
         jsonArrayAllData.add(jsonArray);
         if(allPath.size()>0){
@@ -78,8 +98,7 @@ public class NewsJsoup {
                 String pdfHtml = pdfInfo.replace("pdf", "html");
                 String pdfs[] = pdfHtml.split("/");
                 String filename[] = pdfs[1].split("\\.");
-                System.out.println("报纸urlTTT");
-                pdf2html("E:\\pdf2HtmlEx\\pdf2htmlEX.exe --embed-css 0  --embed-javascript 0 --embed-image 0  --clean-tmp 1   --fit-width 1330 " + pdfInfo + "  --dest-dir " + pdfs[0] + "\\" + filename[0] + "  " + pdfs[1] + "", "v.pdf", "v2.html");
+                pdf2html(""+Pdf2ToHtmlUri+"  --embed-javascript 0 --embed-image 0  --clean-tmp 1   --fit-width 1330 " + pdfInfo + "  --dest-dir " + pdfs[0] + "\\" + filename[0] + " ", "v.pdf", "v2.html");
             }
         }
         return jsonArray;

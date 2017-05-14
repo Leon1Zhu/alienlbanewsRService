@@ -2,6 +2,7 @@ package com.alienlab.jsoup;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alienlab.domain.AlinewsPaper;
 import com.alienlab.service.AlinewsPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,21 +32,22 @@ public class PdfDataGrab {
     public static JSONArray jsonArrayAllData = new JSONArray();
 
     public JSONArray getPdfUrl()  {
-        JSONArray ja = null;
+        List<AlinewsPaper> alinewsPapers = null;
         try {
             System.out.println(alinewsPaperService);
-            ja = alinewsPaperService.findAllRecommend();
+            alinewsPapers = alinewsPaperService.findAllRecommend();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(ja==null){
+        if(alinewsPapers==null){
             System.out.println("出错啦");
             return new JSONArray();
         }
         SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd");
         List<String> newsName=new ArrayList<>();
         List<String> newsUrl = new ArrayList<>();
-       for (int i=0;i<ja.size();i++){
+       for (int i=0;i<5;i++){
+          /* for (int i=0;i<alinewsPapers.size();i++){*/
            /*paper.put("id", alinewsPaper.getId());
            paper.put("paperName", alinewsPaper.getPaperName());
            paper.put("paperUrl", alinewsPaper.getPaperUrl());
@@ -55,12 +57,13 @@ public class PdfDataGrab {
            paper.put("picUrl", alinewsPaper.getPicUrl());
            paper.put("isCollect", false);
            paper.put("paperinfolist", getPaperInfoByPaperId(alinewsPaper.getId()));*/
-           Date time = ja.getJSONObject(i).getDate("createTime");
-           String oldTime = smf.format(time);
+           String oldTime  = alinewsPapers.get(i).getUpdateTime();
+           oldTime = oldTime==null? "":oldTime;
            String newTime = smf.format(new Date());
            if(!oldTime.equals(newTime)){
-               newsName.add(ja.getJSONObject(i).getString("paperName"));
-               newsUrl.add(ja.getJSONObject(i).getString("paperUrl"));
+               System.out.println(alinewsPapers.get(i).getPaperUrl());
+               newsName.add(alinewsPapers.get(i).getPaperName());
+               newsUrl.add(alinewsPapers.get(i).getPaperUrl());
            }
        }
         jsoupAsyncMethod.getUrlPdf(newsName, newsUrl, dummypath);

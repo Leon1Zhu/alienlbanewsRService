@@ -28,10 +28,11 @@ public class AlinewsPaper {
     //创建时间
     private Date createTime;
 
+    private String updateTime;
     public AlinewsPaper() {
     }
 
-    public AlinewsPaper(String id, String paperName, String paperUrl, String paperType, String paperStatus, int collectCount, Date createTime,String picUrl) {
+    public AlinewsPaper(String id, String paperName, String paperUrl, String paperType, String paperStatus, int collectCount, Date createTime,String picUrl,String updateTime) {
         this.id = id;
         this.paperName = paperName;
         this.paperUrl = paperUrl;
@@ -40,8 +41,17 @@ public class AlinewsPaper {
         this.collectCount = collectCount;
         this.createTime = createTime;
         this.picUrl = picUrl;
+        this.updateTime = updateTime;
     }
 
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
     public String getPicUrl() {
         return picUrl;
     }

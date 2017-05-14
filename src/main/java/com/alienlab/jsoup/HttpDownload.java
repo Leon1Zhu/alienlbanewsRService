@@ -54,7 +54,6 @@ public class HttpDownload {
      * @param filepath
      * @return
      */
-    @Async
     public String download(String url, String filepath) {
         try {
             HttpClient client = new DefaultHttpClient();

@@ -55,9 +55,18 @@ public class NewsJsoup {
     @Async
     public JSONArray getNeedFile(String url, String name, String getpath) throws IOException {
         //创建链接，得到html文本对象
+        System.out.println("开始执行");
         Document doc = Jsoup.connect(url).get();
         //文本选择
         Elements links = doc.select("a[href$=.pdf]");
+
+        Elements linksTtile = doc.select("a#pageLink");
+        System.out.println("成功：" + linksTtile.toString());
+        System.out.println("成功：" + links.toString());
+        for (Element link : linksTtile) {
+            System.out.println(link.text());
+        }
+
         JSONArray jsonArray = new JSONArray();
         String today = NowTime.getNowTime("yyyy-MM-dd");
         File file = new File("" + getpath + "\\" + today + "");
@@ -78,27 +87,27 @@ public class NewsJsoup {
         jsonArray = (JSONArray) JSON.toJSON(list);
         int listlen = list.size();
         JSONArray allPath = new JSONArray();
-        JSONArray jsonArrayhtml=new JSONArray();
+        JSONArray jsonArrayhtml = new JSONArray();
         for (int i = 0; i < listlen; i++) {
             String path = "" + getpath + "\\" + today + "\\" + today + "-" + name + "-" + i + ".pdf";
             allPath.add(path);
-            jsonArrayhtml.add(""+saveurl+""+today+"/"+today+"-"+name+"-"+i+"/"+today+"-"+name+"-"+i+".html");
-            httpDownload.download(list.get(i), ""+getpath+"\\"+today+"\\"+today+"-"+name+"-"+i+".pdf");
+            jsonArrayhtml.add("" + saveurl + "" + today + "/" + today + "-" + name + "-" + i + "/" + today + "-" + name + "-" + i + ".html");
+            httpDownload.download(list.get(i), "" + getpath + "\\" + today + "\\" + today + "-" + name + "-" + i + ".pdf");
         }
         try {
-            alinewsPaperInfoService.saveDoweloadPaper(name,jsonArrayhtml);
+            alinewsPaperInfoService.saveDoweloadPaper(name, jsonArrayhtml);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("保存报刊出错");
         }
         jsonArrayAllData.add(jsonArray);
-        if(allPath.size()>0){
-            for (int i=0;i<allPath.size();i++) {
+        if (allPath.size() > 0) {
+            for (int i = 0; i < allPath.size(); i++) {
                 String pdfInfo = allPath.get(i).toString();
                 String pdfHtml = pdfInfo.replace("pdf", "html");
                 String pdfs[] = pdfHtml.split("/");
                 String filename[] = pdfs[1].split("\\.");
-                pdf2html(""+Pdf2ToHtmlUri+"  --embed-javascript 0 --embed-image 0  --clean-tmp 1   --fit-width 1330 " + pdfInfo + "  --dest-dir " + pdfs[0] + "\\" + filename[0] + " ", "v.pdf", "v2.html");
+                pdf2html("" + Pdf2ToHtmlUri + "  --embed-javascript 0 --embed-image 0  --clean-tmp 1   --fit-width 1330 " + pdfInfo + "  --dest-dir " + pdfs[0] + "\\" + filename[0] + " ", "v.pdf", "v2.html");
             }
         }
         return jsonArray;
